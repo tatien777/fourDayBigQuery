@@ -1,3 +1,2 @@
--- select all form 
-SELECT * 
-FROM ORDER ;
+-- get all data -- 
+SELECT * FROM table
