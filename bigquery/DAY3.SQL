@@ -77,3 +77,22 @@ SUM (CASE WHEN fruit = 'apple' then weight ELSE 0 END ) END as sum_apple_weight,
 FROM UNNEST([struct("apple" as fruit, 1 AS weight),('banana',2),('banana',4),('apple',2)])
 GROUP BY 1,2
 
+-- character 
+CREATE TEMPORARY FUNCTION FiveFirstChar(word STRING)
+  RETURNS STRING
+  AS (SUBSTR(word, 0, 5));
+
+SELECT 
+  FiveFirstChar(name) AS five_chars_name, 
+FROM  UNNEST(["David Ta"]) as name
+# using js 
+
+CREATE TEMPORARY FUNCTION js_FindFiveChars(word STRING)
+  RETURNS STRING
+  LANGUAGE js
+  AS "return word.substring(0, 5);";
+
+
+SELECT 
+  js_FindFiveChars(name) AS five_chars_name, 
+FROM  UNNEST(["David Ta"]) as name
